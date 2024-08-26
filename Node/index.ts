@@ -1,19 +1,21 @@
+import express, { Application } from "express";
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
+const userRoute = require("./routes/userRoute");
+const transactionRoute = require("./routes/transactionRoute");
 
 dotenv.config();
-const app = express();
+const app: Application = express();
 
-const PORT = process.env.PORT;
+const PORT = "jeueu";
 
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).send(<h1>Hello World!</h1>);
-});
+//redirecting routes
+app.use("/auth", userRoute);
+app.use("/transaction", transactionRoute);
 
 app
   .listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   })
   .on("error", (error: Error) => {
-    throw new Error(error.message);
+    console.log(`${error}`);
   });

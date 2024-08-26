@@ -5,13 +5,14 @@
   "main": "index.js",
   "author": "Sora",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "start": "npx tsc && node dist/index.js"
   },
   "dependencies": {
+    "@prisma/client": "^5.18.0",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "prisma": "^5.18.0"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
