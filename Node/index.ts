@@ -1,14 +1,16 @@
-import dotenv from "dotenv";
-import express, { Request, Response } from "express";
+import express, { Application } from "express";
+// import dotenv from "dotenv";
+const userRoute = require("./routes/userRoute");
+const transactionRoute = require("./routes/transactionRoute");
 
 dotenv.config();
-const app = express();
+const app: Application = express();
 
 const PORT = process.env.PORT;
 
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).send(<h1>Hello World!</h1>);
-});
+//redirecting routes
+app.use("/auth", userRoute);
+app.use("/transaction", transactionRoute);
 
 app
   .listen(PORT, () => {
