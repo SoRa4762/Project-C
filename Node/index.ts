@@ -1,16 +1,20 @@
-import express, { Application } from "express";
+import express, { Application, urlencoded } from "express";
 import dotenv from "dotenv";
 const userRoute = require("./routes/userRoute");
-const transactionRoute = require("./routes/transactionRoute");
+const citizenshipRoute = require("./routes/citizenshipRecordRoute");
+const cors = require("cors");
 
 dotenv.config();
 const app: Application = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-const PORT = "jeueu";
+const PORT = process.env.PORT || 3000;
 
 //redirecting routes
 app.use("/auth", userRoute);
-app.use("/transaction", transactionRoute);
+app.use("/citizenship", citizenshipRoute);
 
 app
   .listen(PORT, () => {
