@@ -3,12 +3,13 @@ import {
   getAllFullCitizenRecordController,
   getOneFullCitizenRecordController,
 } from "../controllers/fullCitizenRecordController";
+import { authenticateJWT } from "../middleware/authMiddleware";
 
 const express = require("express");
 const router = express.Router();
 
-router.get("/", getAllFullCitizenRecordController);
-router.get("/:citizenId", getOneFullCitizenRecordController);
-router.post("/", createOneFullCitizenRecordController);
+router.get("/", authenticateJWT, getAllFullCitizenRecordController);
+router.get("/:citizenId", authenticateJWT, getOneFullCitizenRecordController);
+router.post("/", authenticateJWT, createOneFullCitizenRecordController);
 
 module.exports = router;
