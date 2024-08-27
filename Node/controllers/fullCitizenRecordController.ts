@@ -4,16 +4,22 @@ import {
   getAllFullCitizenRecordService,
   getOneFullCitizenRecordService,
 } from "../services/fullCitizenRecordService";
+import prisma from "../db";
 
 export const getOneFullCitizenRecordController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const data = await getOneFullCitizenRecordService(req.params.citizenId);
+    const data = await prisma.$transaction(async () => {
+      const result = await getOneFullCitizenRecordService(req.params.citizenId);
+      return result;
+    });
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).json({ error: "Failed to get transaction ", err });
+    res.status(500).json({ error: "The transaction failed: ", err });
+  } finally {
+    prisma.$disconnect();
   }
 };
 
@@ -22,26 +28,30 @@ export const getAllFullCitizenRecordController = async (
   res: Response
 ) => {
   try {
-    const data = await getAllFullCitizenRecordService();
-    console.log(
-      "Getting all full citizen records - controller:",
-      await getAllFullCitizenRecordService()
-    );
+    const data = await prisma.$transaction(async () => {
+      const result = await getAllFullCitizenRecordService();
+      return result;
+    });
     res.status(200).json(data);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (err: any) {
+    res.status(500).json({ error: "The transaction failed: ", err });
+  } finally {
+    prisma.$disconnect();
   }
 };
-
 export const createOneFullCitizenRecordController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    // console.log("Creating full citizen record - controller", req.body);
-    const data = await createOneFullCitizenRecordService(req.body);
+    const data = await prisma.$transaction(async () => {
+      const result = await createOneFullCitizenRecordService(req.body);
+      return result;
+    });
     res.status(200).json(data);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (err: any) {
+    res.status(500).json({ error: "The transaction failed: ", err });
+  } finally {
+    prisma.$disconnect();
   }
 };

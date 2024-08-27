@@ -1,4 +1,4 @@
-import express, { Application, urlencoded } from "express";
+import express, { Application } from "express";
 import dotenv from "dotenv";
 const userRoute = require("./routes/userRoute");
 const citizenshipRoute = require("./routes/citizenshipRecordRoute");
@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 3000;
 app.use("/auth", userRoute);
 app.use("/citizenship", citizenshipRoute);
 app.use("/auth", authRoute);
+
 app
   .listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

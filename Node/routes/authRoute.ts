@@ -1,4 +1,7 @@
-import { registerUserController } from "../controllers/authController";
+import {
+  loginUserController,
+  registerUserController,
+} from "../controllers/authController";
 
 const express = require("express");
 const router = express.Router();
