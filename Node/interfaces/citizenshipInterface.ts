@@ -26,9 +26,3 @@ export interface CitizenshipInterface {
   primary_language: string;
   secondary_language: string;
 }
-
-export interface AuthInterface {
-  usernames: string;
-  password: string;
-  confirmPassword?: string;
-}
