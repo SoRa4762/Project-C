@@ -48,8 +48,8 @@ const Auth = () => {
           <div
             className={`${
               isSignIn
-                ? "transform translate-x-0 rounded-r-[11rem] sm:rounded-l-3xl duration-300"
-                : "transform translate-x-[100%] rounded-l-[11rem] sm:rounded-r-3xl duration-300"
+                ? "transform translate-x-0 rounded-r-[11rem] sm:rounded-l-3xl"
+                : "transform translate-x-[100%] rounded-l-[11rem] sm:rounded-r-3xl"
             } h-full flex-1 bg-emerald-600 duration-700`}
           >
             {isSignIn ? (
