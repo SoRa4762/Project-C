@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import SignInImage from "../assets/undraw_signin.svg";
-import SignUpImage from "../assets/undraw_signup.svg";
+import SignInImage from "../assets/undraw_signin_rosequartz.svg";
+import SignUpImage from "../assets/undraw_signup_rosequartz.svg";
+import GoogleIcon from "../assets/googleLogo.png";
+import GithubIcon from "../assets/githubLogo.png";
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -48,7 +50,7 @@ const Auth = () => {
               isSignIn
                 ? "transform translate-x-0 rounded-r-[11rem] sm:rounded-l-3xl"
                 : "transform translate-x-[100%] rounded-l-[11rem] sm:rounded-r-3xl"
-            } h-full flex-1 bg-blue-600 duration-700`}
+            } h-full flex-1 bg-emerald-600 duration-700`}
           >
             {isSignIn ? (
               <div
@@ -91,7 +93,19 @@ const Auth = () => {
                     Sign Up
                   </span>
                 </p>
-                <p className="text-white">Or sign in with .... ....</p>
+                <div className="flex text-white gap-2 items-center">
+                  Or sign in with{" "}
+                  <img
+                    className="h-8 w-8 rounded-full object-cover p-1 border-none cursor-pointer bg-white"
+                    src={GoogleIcon}
+                    alt="googleIcon"
+                  />{" "}
+                  <img
+                    className="h-8 w-8 rounded-full object-cover p-1 border-none cursor-pointer bg-white"
+                    src={GithubIcon}
+                    alt="githubIcon"
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -111,13 +125,13 @@ const Auth = () => {
                 // onSubmit={handleSubmit(onSubmit)}
                 className="h-full w-full flex flex-col items-center gap-2 md:gap-4 lg:gap-6 justify-center pl-8 pr-8 sm:pl-12 sm:pr-12"
               >
-                <h1 className="text-blue-600 text-3xl md:text-4xl lg:text-5xl font-bold">
+                <h1 className="text-emerald-600 text-3xl md:text-4xl lg:text-5xl font-bold">
                   Sign Up
                 </h1>
 
                 <div className="w-full">
                   <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-blue-600 rounded-md focus:border-blue-600"
+                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
                     type="text"
                     placeholder="Username"
                     name="username"
@@ -134,7 +148,7 @@ const Auth = () => {
 
                 <div className="w-full">
                   <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-blue-600 rounded-md focus:border-blue-600"
+                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
                     type="email"
                     placeholder="Email"
                     name="email"
@@ -152,7 +166,7 @@ const Auth = () => {
                 {/*if you add eye button, make sure to turn the type to text and back */}
                 <div className="w-full">
                   <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-blue-600 rounded-md focus:border-blue-600"
+                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -169,7 +183,7 @@ const Auth = () => {
 
                 <div className="w-full">
                   <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-blue-600 rounded-md focus:border-blue-600"
+                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
                     type="password"
                     placeholder="Confirm Password"
                     name="confirmPassword"
@@ -186,7 +200,7 @@ const Auth = () => {
 
                 <button
                   type="submit"
-                  className="h-10 md:h-14 w-full bg-blue-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-blue-800"
+                  className="h-10 md:h-14 w-full bg-emerald-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-emerald-800"
                   onClick={(e) => {
                     e.preventDefault();
                     console.log(signUpData);
@@ -208,7 +222,7 @@ const Auth = () => {
                     />
                     <p>
                       I agree to all{" "}
-                      <span className="text-blue-600">
+                      <span className="text-emerald-600">
                         <a href="/termsconditions">Terms and Conditions</a>
                       </span>
                     </p>
@@ -224,13 +238,13 @@ const Auth = () => {
                 // onSubmit={handleSubmit(onSubmit)}
                 className="h-full w-full flex flex-col gap-2 md:gap-4 lg:gap-6 justify-center items-center pl-8 pr-8 sm:pl-12 sm:pr-12"
               >
-                <h1 className="text-blue-600 text-3xl md:text-4xl lg:text-5xl font-bold">
+                <h1 className="text-emerald-600 text-3xl md:text-4xl lg:text-5xl font-bold">
                   Sign In
                 </h1>
 
                 <div className="w-full">
                   <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-blue-600 rounded-md focus:border-blue-600"
+                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
                     type="text"
                     placeholder="Username"
                     name="username"
@@ -249,7 +263,7 @@ const Auth = () => {
                 {/*if you add eye button, make sure to turn the type to text and back */}
                 <div className="w-full">
                   <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-blue-600 rounded-md focus:border-blue-600"
+                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -282,7 +296,7 @@ const Auth = () => {
 
                 <button
                   type="submit"
-                  className="h-10 md:h-14 w-full bg-blue-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-blue-800"
+                  className="h-10 md:h-14 w-full bg-emerald-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-emerald-800"
                   onClick={(e) => {
                     e.preventDefault();
                     console.log(signInData);
@@ -293,8 +307,10 @@ const Auth = () => {
 
                 <p className="font-normal">
                   New Here?{" "}
-                  <span className="text-blue-600">
-                    <a href="/signup">Sign Up</a>
+                  <span className="text-emerald-600">
+                    <a onClick={handleSwitch} className="cursor-pointer">
+                      Sign Up
+                    </a>
                   </span>
                 </p>
               </form>
@@ -311,7 +327,7 @@ const Auth = () => {
           >
             Sign In
           </button>
-          <button className="h-full w-full bg-blue-600" onClick={handleSwitch}>
+          <button className="h-full w-full bg-emerald-600" onClick={handleSwitch}>
             Sign Up
           </button>
         </div> */}
