@@ -104,7 +104,7 @@ const Auth = () => {
             flex-1 duration-700`}
           >
             {isSignIn ? (
-              <SignUpForm />
+              <SignUpForm handleSwitch={handleSwitch} />
             ) : (
               <SignInForm handleSwitch={handleSwitch} />
             )}

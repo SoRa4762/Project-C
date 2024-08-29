@@ -2,17 +2,30 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "../validation/authValidation";
 import { loginType } from "../interfaces/userInterface";
+import { loginUser } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
+import { jwtDecode } from "jwt-decode";
 
 const SignInForm = ({ handleSwitch }: { handleSwitch: () => void }) => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(signInSchema) });
 
-  const onSubmit = (login: loginType) => {
-    console.log(login);
+  const onSubmit = async (loginData: loginType) => {
+    const response = await loginUser(loginData);
+    //@ts-expect-error: no way token is null mate
+    const token = response.data;
+    localStorage.setItem("token", JSON.stringify(token));
+    const decodedToken = jwtDecode(token);
+    login(decodedToken);
+    navigate("/home");
   };
+
   return (
     <form
       action="submit"

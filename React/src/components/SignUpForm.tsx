@@ -2,16 +2,21 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../validation/authValidation";
 import { registerType } from "../interfaces/userInterface";
+import { registerUser } from "../api/auth";
 
-const SignUpForm = () => {
+const SignUpForm = ({ handleSwitch }: { handleSwitch: () => void }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(signUpSchema) });
 
-  const onSubmit = (register: registerType) => {
-    console.log(register);
+  const onSubmit = async (registerData: registerType) => {
+    const response = await registerUser(registerData);
+    console.log(response);
+    if (response) {
+      handleSwitch();
+    }
   };
 
   return (
