@@ -1,11 +1,12 @@
-import React from 'react'
+import MultiStepForm from "../components/MultiStepForm";
 
-type Props = {}
-
-const Home = (props: Props) => {
+const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <h1>Citizenship Form</h1>
+      <MultiStepForm />
+    </>
+  );
+};
 
-export default Home
+export default Home;
