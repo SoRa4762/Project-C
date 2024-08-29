@@ -1,10 +1,11 @@
-import MultiStepForm from "../components/MultiStepForm";
+import FullCitizenForm from "../components/FullCitizenForm";
 
 const Home = () => {
   return (
     <>
-      <h1>Citizenship Form</h1>
-      <MultiStepForm />
+      <div className="h-full w-full flex flex-col p-4 md:px-12">
+        <FullCitizenForm />
+      </div>
     </>
   );
 };
