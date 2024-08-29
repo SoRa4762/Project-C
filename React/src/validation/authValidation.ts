@@ -22,4 +22,5 @@ export const signUpSchema = yup.object().shape({
 export const signInSchema = yup.object().shape({
   email: yup.string().required("Email shall not be empty"),
   password: yup.string().required("Password shall not be empty"),
+  rememberMe: yup.bool(),
 });

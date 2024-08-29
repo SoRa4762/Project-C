@@ -1,35 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SignInImage from "../assets/undraw_signin_rosequartz.svg";
 import SignUpImage from "../assets/undraw_signup_rosequartz.svg";
 import GoogleIcon from "../assets/googleLogo.png";
 import GithubIcon from "../assets/githubLogo.png";
+import SignUpForm from "../components/SignUpForm";
+import SignInForm from "../components/SignInForm";
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
-  const [signUpData, setSignUpData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    iAgree: false,
-  });
-
-  const [signInData, setSignInData] = useState({
-    username: "",
-    password: "",
-    rememberMe: false,
-  });
-
-  const handleSignUpChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSignInChange = (e) => {
-    const { name, value } = e.target;
-    setSignInData((prevData) => ({ ...prevData, [name]: value }));
-  };
 
   const handleSwitch = () => {
     setIsSignIn(!isSignIn);
@@ -41,15 +20,19 @@ const Auth = () => {
 
   return (
     <>
-      <div className="h-[100vh] w-full sm:p-12 md:p-16 lg:p-20 bg-slate-200">
+      <div className="h-[100vh] w-full sm:p-12 md:p-16 lg:p-20 bg-teal-200">
         {/* sign in/sign up*/}
-        <div className="h-full w-full flex bg-white sm:rounded-[2rem] shadow-2xl">
+        <div
+          className={`${
+            isSignIn ? "rounded-r-[2rem]" : "rounded-l-[2rem]"
+          } h-full w-full flex bg-white shadow-2xl transition-all duration-700`}
+        >
           {/* first half */}
           <div
             className={`${
               isSignIn
-                ? "transform translate-x-0 rounded-r-[11rem] sm:rounded-l-3xl"
-                : "transform translate-x-[100%] rounded-l-[11rem] sm:rounded-r-3xl"
+                ? "transform translate-x-0 rounded-r-[2rem]"
+                : "transform translate-x-[100%] rounded-l-[2rem]"
             } h-full flex-1 bg-emerald-600 duration-700`}
           >
             {isSignIn ? (
@@ -121,216 +104,12 @@ const Auth = () => {
             flex-1 duration-700`}
           >
             {isSignIn ? (
-              <form
-                // onSubmit={handleSubmit(onSubmit)}
-                className="h-full w-full flex flex-col items-center gap-2 md:gap-4 lg:gap-6 justify-center pl-8 pr-8 sm:pl-12 sm:pr-12"
-              >
-                <h1 className="text-emerald-600 text-3xl md:text-4xl lg:text-5xl font-bold">
-                  Sign Up
-                </h1>
-
-                <div className="w-full">
-                  <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
-                    type="text"
-                    placeholder="Username"
-                    name="username"
-                    id="username"
-                    value={signUpData.username}
-                    onChange={handleSignUpChange}
-                    // onChange={handleChange}
-                    // {...register("username")}
-                  />
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-                  {errors.username?.message}
-                </p> */}
-                </div>
-
-                <div className="w-full">
-                  <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                    id="email"
-                    value={signUpData.email}
-                    onChange={handleSignUpChange}
-                    // onChange={handleChange}
-                    // {...register("email")}
-                  />
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-                  {errors.email?.message}
-                </p> */}
-                </div>
-
-                {/*if you add eye button, make sure to turn the type to text and back */}
-                <div className="w-full">
-                  <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    id="password"
-                    value={signUpData.password}
-                    onChange={handleSignUpChange}
-                    // onChange={handleChange}
-                    // {...register("password")}
-                  />
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-                  {errors.password?.message}
-                </p> */}
-                </div>
-
-                <div className="w-full">
-                  <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
-                    type="password"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={signUpData.confirmPassword}
-                    onChange={handleSignUpChange}
-                    // onChange={handleChange}
-                    // {...register("confirmPassword")}
-                  />
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-                  {errors.confirmPassword?.message}
-                </p> */}
-                </div>
-
-                <button
-                  type="submit"
-                  className="h-10 md:h-14 w-full bg-emerald-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-emerald-800"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log(signUpData);
-                  }}
-                >
-                  Sign Up
-                </button>
-
-                <div className="flex flex-col items-center">
-                  <div className="flex gap-2">
-                    <input
-                      type="checkbox"
-                      name="iAgree"
-                      id="iAgree"
-                      value={signUpData["iAgree"]}
-                      onChange={handleSignUpChange}
-                      // onChange={handleChange}
-                      // {...register("iAgree")}
-                    />
-                    <p>
-                      I agree to all{" "}
-                      <span className="text-emerald-600">
-                        <a href="/termsconditions">Terms and Conditions</a>
-                      </span>
-                    </p>
-                  </div>
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold">
-                  {errors.iAgree?.message}
-                </p> */}
-                </div>
-              </form>
+              <SignUpForm />
             ) : (
-              <form
-                action="submit"
-                // onSubmit={handleSubmit(onSubmit)}
-                className="h-full w-full flex flex-col gap-2 md:gap-4 lg:gap-6 justify-center items-center pl-8 pr-8 sm:pl-12 sm:pr-12"
-              >
-                <h1 className="text-emerald-600 text-3xl md:text-4xl lg:text-5xl font-bold">
-                  Sign In
-                </h1>
-
-                <div className="w-full">
-                  <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
-                    type="text"
-                    placeholder="Username"
-                    name="username"
-                    id="username"
-                    value={signInData["username"]}
-                    onChange={handleSignInChange}
-                    // {...register("username")}
-                    // onChange={handleChange}
-                    // value={signInValues["username"]}
-                  />
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-                    {errors.username?.message}
-                  </p> */}
-                </div>
-
-                {/*if you add eye button, make sure to turn the type to text and back */}
-                <div className="w-full">
-                  <input
-                    className="h-10 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    id="password"
-                    value={signInData["password"]}
-                    onChange={handleSignInChange}
-                    // {...register("password")}
-                    // value={signInValues["password"]}
-                    // onChange={handleChange}
-                  />
-                  {/* <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-                    {errors.password?.message}
-                  </p> */}
-                </div>
-
-                <div className="flex gap-2 justify-start w-full">
-                  <input
-                    type="checkbox"
-                    name="rememberMe"
-                    id="rememberMe"
-                    value={signInData["rememberMe"]}
-                    onClick={handleSignInChange}
-                    // onChange={handleSignInChange}
-                    // {...register("remember")}
-                    // value={signInValues["condition"]}
-                    // onChange={handleChange}
-                  />
-                  <p>Remember Me </p>
-                </div>
-
-                <button
-                  type="submit"
-                  className="h-10 md:h-14 w-full bg-emerald-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-emerald-800"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log(signInData);
-                  }}
-                >
-                  Sign In
-                </button>
-
-                <p className="font-normal">
-                  New Here?{" "}
-                  <span className="text-emerald-600">
-                    <a onClick={handleSwitch} className="cursor-pointer">
-                      Sign Up
-                    </a>
-                  </span>
-                </p>
-              </form>
+              <SignInForm handleSwitch={handleSwitch} />
             )}
           </div>
         </div>
-
-        {/* <div className="h-24 w-full flex">
-          <button
-            className={`${
-              !isSignIn && "disabled:bg-red-900"
-            } h-full w-full bg-red-600`}
-            onClick={handleSwitch}
-          >
-            Sign In
-          </button>
-          <button className="h-full w-full bg-emerald-600" onClick={handleSwitch}>
-            Sign Up
-          </button>
-        </div> */}
       </div>
     </>
   );
