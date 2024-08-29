@@ -1,38 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SignInImage from "../assets/undraw_signin_rosequartz.svg";
 import SignUpImage from "../assets/undraw_signup_rosequartz.svg";
 import GoogleIcon from "../assets/googleLogo.png";
 import GithubIcon from "../assets/githubLogo.png";
-import { loginType, registerType } from "../interfaces/userInterface";
 import SignUpForm from "../components/SignUpForm";
 import SignInForm from "../components/SignInForm";
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
-  const [signUpData, setSignUpData] = useState<registerType>({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    iAgree: false,
-  });
-
-  const [signInData, setSignInData] = useState<loginType>({
-    email: "",
-    password: "",
-    rememberMe: false,
-  });
-
-  const handleSignUpChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSignInChange = (e) => {
-    const { name, value } = e.target;
-    setSignInData((prevData) => ({ ...prevData, [name]: value }));
-  };
 
   const handleSwitch = () => {
     setIsSignIn(!isSignIn);
@@ -134,20 +110,6 @@ const Auth = () => {
             )}
           </div>
         </div>
-
-        {/* <div className="h-24 w-full flex">
-          <button
-            className={`${
-              !isSignIn && "disabled:bg-red-900"
-            } h-full w-full bg-red-600`}
-            onClick={handleSwitch}
-          >
-            Sign In
-          </button>
-          <button className="h-full w-full bg-emerald-600" onClick={handleSwitch}>
-            Sign Up
-          </button>
-        </div> */}
       </div>
     </>
   );
