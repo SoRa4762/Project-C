@@ -17,8 +17,8 @@ export const registerUserController = async (req: Request, res: Response) => {
 
 export const loginUserController = async (req: Request, res: Response) => {
   try {
-    const data = await loginUserService(req.body);
-    res.status(200).json(data);
+    const token = await loginUserService(req.body);
+    res.status(200).json(token);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
