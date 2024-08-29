@@ -4,7 +4,7 @@ import { signInSchema } from "../validation/authValidation";
 import { loginType } from "../interfaces/userInterface";
 import { loginUser } from "../api/auth";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
+import { useAuth } from "../customHooks/useAuth";
 import { jwtDecode } from "jwt-decode";
 
 const SignInForm = ({ handleSwitch }: { handleSwitch: () => void }) => {

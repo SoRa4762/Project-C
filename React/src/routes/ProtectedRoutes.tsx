@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
+import { useAuth } from "../customHooks/useAuth";
 
 const ProtectedRoutes: React.FC<{
   redirectPath: string;
