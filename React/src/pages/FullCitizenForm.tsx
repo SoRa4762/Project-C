@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { fullCitizenSchema } from "../validation/citizenValidation";
 import { CitizenshipInterface } from "../interfaces/citizenInteface";
-import { useAuth } from "../context/useAuth";
+import { Link } from "react-router-dom";
+import { addCitizen } from "../api/citizen";
 
 const FullCitizenForm = () => {
   const {
@@ -11,25 +12,13 @@ const FullCitizenForm = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(fullCitizenSchema) });
 
-  const onSubmit = (data: CitizenshipInterface) => {
-    console.log(data);
+  const onSubmit = async (data: CitizenshipInterface) => {
+    const response = await addCitizen(data);
+    console.log(response);
   };
-
-  const { logout } = useAuth();
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <h1 className="text-emerald-600 text-2xl md:text-3xl lg:text-4xl font-bold">
-          Citizenship Form
-        </h1>
-        <button
-          onClick={logout}
-          className="h-10 md:h-14 w-24 bg-red-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-red-800"
-        >
-          Log out
-        </button>
-      </div>
       <form
         action="submit"
         // @ts-expect-error: no way errors is null
@@ -380,6 +369,14 @@ const FullCitizenForm = () => {
         >
           Submit
         </button>
+
+        <Link
+          to={"/home"}
+          type="submit"
+          className="h-12 md:h-14 w-full flex items-center justify-center bg-amber-600 rounded-md text-white font-bold text-lg ease-in-out duration-300 hover:bg-emerald-800"
+        >
+          Back
+        </Link>
       </form>
     </>
   );
