@@ -13,15 +13,17 @@ const FullCitizenForm = () => {
   } = useForm({ resolver: yupResolver(fullCitizenSchema) });
 
   const onSubmit = async (data: CitizenshipInterface) => {
-    const response = await addCitizen(data);
+    const formattedDate = new Date(data.date_of_birth).toISOString();
+    const updatedData = { ...data, date_of_birth: formattedDate };
+    const response = await addCitizen(updatedData);
     console.log(response);
+    console.log(updatedData);
   };
 
   return (
     <>
       <form
         action="submit"
-        // @ts-expect-error: no way errors is null
         onSubmit={handleSubmit(onSubmit)}
         className="grid sm:grid-cols-2 sm:grid-rows-2 gap-x-12 gap-y-4 px-12 py-4"
       >
@@ -29,12 +31,12 @@ const FullCitizenForm = () => {
           <input
             className="h-12 md:h-14 pl-4 w-full border-2 border-emerald-600 rounded-md focus:border-emerald-600"
             type="text"
-            placeholder="CitizenId"
+            placeholder="Citizen ID"
             id="citizenId"
-            {...register("citizenId")}
+            {...register("citizen_id")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.citizenId?.message}
+            {errors.citizen_id?.message}
           </p>
         </div>
 
@@ -44,10 +46,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="National ID Number"
             id="nationalIdNumber"
-            {...register("nationalIdNumber")}
+            {...register("national_id_number")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.nationalIdNumber?.message}
+            {errors.national_id_number?.message}
           </p>
         </div>
 
@@ -57,10 +59,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Passport Number"
             id="passportNumber"
-            {...register("passportNumber")}
+            {...register("passport_number")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.passportNumber?.message}
+            {errors.passport_number?.message}
           </p>
         </div>
 
@@ -70,10 +72,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Other Identification"
             id="otherIdentification"
-            {...register("otherIdentification")}
+            {...register("other_identification")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.otherIdentification?.message}
+            {errors.other_identification?.message}
           </p>
         </div>
 
@@ -83,10 +85,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="First Name"
             id="firstName"
-            {...register("firstName")}
+            {...register("first_name")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.firstName?.message}
+            {errors.first_name?.message}
           </p>
         </div>
 
@@ -96,10 +98,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Last Name"
             id="lastName"
-            {...register("lastName")}
+            {...register("last_name")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.lastName?.message}
+            {errors.last_name?.message}
           </p>
         </div>
 
@@ -135,10 +137,10 @@ const FullCitizenForm = () => {
             type="date"
             placeholder="Date Of Birth"
             id="dateOfBirth"
-            {...register("dateOfBirth")}
+            {...register("date_of_birth")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.dateOfBirth?.message}
+            {errors.date_of_birth?.message}
           </p>
         </div>
 
@@ -161,10 +163,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Marital Status"
             id="maritalStatus"
-            {...register("maritalStatus")}
+            {...register("marital_status")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.maritalStatus?.message}
+            {errors.marital_status?.message}
           </p>
         </div>
 
@@ -187,10 +189,10 @@ const FullCitizenForm = () => {
             type="number"
             placeholder="Household Size"
             id="householdSize"
-            {...register("householdSize")}
+            {...register("household_size")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.householdSize?.message}
+            {errors.household_size?.message}
           </p>
         </div>
 
@@ -200,10 +202,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Ownership Status"
             id="ownershipStatus"
-            {...register("ownershipStatus")}
+            {...register("ownership_status")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.ownershipStatus?.message}
+            {errors.ownership_status?.message}
           </p>
         </div>
 
@@ -226,10 +228,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Employment Status"
             id="employmentStatus"
-            {...register("employmentStatus")}
+            {...register("employment_status")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.employmentStatus?.message}
+            {errors.employment_status?.message}
           </p>
         </div>
 
@@ -239,10 +241,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Income Level"
             id="incomeLevel"
-            {...register("incomeLevel")}
+            {...register("income_level")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.incomeLevel?.message}
+            {errors.income_level?.message}
           </p>
         </div>
 
@@ -252,10 +254,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Income Source"
             id="incomeSource"
-            {...register("incomeSource")}
+            {...register("income_source")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.incomeSource?.message}
+            {errors.income_source?.message}
           </p>
         </div>
 
@@ -265,10 +267,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Education Level"
             id="educationLevel"
-            {...register("educationLevel")}
+            {...register("education_level")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.educationLevel?.message}
+            {errors.education_level?.message}
           </p>
         </div>
 
@@ -291,10 +293,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Chronic Diseases"
             id="chronicDiseases"
-            {...register("chronicDiseases")}
+            {...register("chronic_diseases")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.chronicDiseases?.message}
+            {errors.chronic_diseases?.message}
           </p>
         </div>
 
@@ -304,10 +306,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Access To Healthcare"
             id="accessToHealthcare"
-            {...register("accessToHealthcare")}
+            {...register("access_to_healthcare")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.accessToHealthcare?.message}
+            {errors.access_to_healthcare?.message}
           </p>
         </div>
 
@@ -343,10 +345,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Primary Language"
             id="primaryLanguage"
-            {...register("primaryLanguage")}
+            {...register("primary_language")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.primaryLanguage?.message}
+            {errors.primary_language?.message}
           </p>
         </div>
 
@@ -356,10 +358,10 @@ const FullCitizenForm = () => {
             type="text"
             placeholder="Secondary Language"
             id="secondaryLanguage"
-            {...register("secondaryLanguage")}
+            {...register("secondary_language")}
           />
           <p className="text-xs lg:text-sm text-red-600 font-semibold pt-1">
-            {errors.secondaryLanguage?.message}
+            {errors.secondary_language?.message}
           </p>
         </div>
 

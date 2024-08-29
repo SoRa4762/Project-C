@@ -7,7 +7,7 @@ export interface CitizenshipInterface {
   last_name: string;
   age: number;
   gender: string;
-  date_of_birth: Date;
+  date_of_birth: string;
   nationality: string;
   marital_status: string;
   address: string;
