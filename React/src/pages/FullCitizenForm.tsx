@@ -4,24 +4,49 @@ import { fullCitizenSchema } from "../validation/citizenValidation";
 import { CitizenshipInterface } from "../interfaces/citizenInteface";
 import { Link } from "react-router-dom";
 import { addCitizen } from "../api/citizen";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { useToast } from "@/components/ui/use-toast";
 
 const FullCitizenForm = () => {
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(fullCitizenSchema) });
 
   const onSubmit = async (data: CitizenshipInterface) => {
     const formattedDate = new Date(data.date_of_birth).toISOString();
     const updatedData = { ...data, date_of_birth: formattedDate };
-    const response = await addCitizen(updatedData);
-    console.log(response);
-    console.log(updatedData);
+    try {
+      const response = await addCitizen(updatedData);
+      console.log(response);
+      reset();
+      toast({
+        title: "Success",
+        description: `${response?.data.message}`,
+      });
+    } catch (err) {
+      toast({
+        title: "Failure",
+        description: `${err}`,
+        variant: "destructive",
+      });
+    }
   };
 
   return (
     <>
+      <div className="flex items-center gap-2">
+        <Link
+          to={"/home"}
+          className="flex justify-center items-center text-xl h-8 w-8 hover:bg-slate-200 rounded-full"
+        >
+          <MdOutlineKeyboardArrowLeft />
+        </Link>
+        <p className="text-xl font-bold">Citizenship Form</p>
+      </div>
       <form
         action="submit"
         onSubmit={handleSubmit(onSubmit)}
