@@ -3,7 +3,8 @@ import { CitizenshipInterface } from "../interfaces/citizenInteface";
 const BASE_URL = "http://localhost:5000";
 const token = localStorage.getItem("token");
 //ts is strict mate!
-const parsedToken = JSON.parse(token || "randomToken");
+const parsedToken = JSON.parse(token || '{"token": "randomToken"}');
+//console.log(JSON.parse('{"token": "randomToken"}')); fixing JSON.parse error
 
 export const addCitizen = async (data: CitizenshipInterface) => {
   const response = await axios.post(`${BASE_URL}/citizenship`, data, {
