@@ -1,11 +1,7 @@
-import React from 'react'
-
-type Props = {}
-
-const EconomicInfoForm = (props: Props) => {
+const EconomicInfoForm = () => {
   return (
     <div>EconomicInfoForm.</div>
   )
 }
 
-export default EconomicInfoForm
+export default EconomicInfoForm;

@@ -1,11 +1,5 @@
-import React from 'react'
+const PersonalInfoForm = () => {
+  return <div>PersonalInfoForm</div>;
+};
 
-type Props = {}
-
-const PersonalInfoForm = (props: Props) => {
-  return (
-    <div>PersonalInfoForm</div>
-  )
-}
-
-export default PersonalInfoForm
+export default PersonalInfoForm;
