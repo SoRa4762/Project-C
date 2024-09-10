@@ -1,11 +1,5 @@
-import React from 'react'
+const DemographicInfoForm = () => {
+  return <div>DemographicInfoForm</div>;
+};
 
-type Props = {}
-
-const DemographicInfoForm = (props: Props) => {
-  return (
-    <div>DemographicInfoForm</div>
-  )
-}
-
-export default DemographicInfoForm
+export default DemographicInfoForm;

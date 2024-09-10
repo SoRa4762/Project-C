@@ -1,3 +1,4 @@
+/*
 import { useState } from "react";
 import CitizenshipForm from "../elements/CitizenshipForm";
 import EconomicInfoForm from "../elements/EconomicInfoForm.";
@@ -5,6 +6,7 @@ import PersonalInfoForm from "../elements/PersonalInfoForm";
 import ResidentalInfoForm from "../elements/ResidentalInfoForm";
 import DemographicInfoForm from "../elements/DemographicInfoForm";
 import HealthInfoForm from "../elements/HealthInfoForm";
+
 
 const MultiStepForm: React.FC = () => {
   const [step, setStep] = useState<number>(1);
@@ -42,3 +44,4 @@ const MultiStepForm: React.FC = () => {
 };
 
 export default MultiStepForm;
+*/

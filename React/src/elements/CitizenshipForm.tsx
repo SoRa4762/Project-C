@@ -1,11 +1,5 @@
-import React from 'react'
+const CitizenshipForm = () => {
+  return <div>CitizenshipForm</div>;
+};
 
-type Props = {}
-
-const CitizenshipForm = (props: Props) => {
-  return (
-    <div>CitizenshipForm</div>
-  )
-}
-
-export default CitizenshipForm
+export default CitizenshipForm;

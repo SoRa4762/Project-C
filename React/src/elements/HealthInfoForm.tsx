@@ -1,11 +1,5 @@
-import React from 'react'
+const HealthInfoForm = () => {
+  return <div>HealthInfoForm</div>;
+};
 
-type Props = {}
-
-const HealthInfoForm = (props: Props) => {
-  return (
-    <div>HealthInfoForm</div>
-  )
-}
-
-export default HealthInfoForm
+export default HealthInfoForm;
