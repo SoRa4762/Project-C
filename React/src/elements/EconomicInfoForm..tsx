@@ -4,4 +4,4 @@ const EconomicInfoForm = () => {
   )
 }
 
-export default EconomicInfoForm
+export default EconomicInfoForm;
