@@ -1,6 +1,17 @@
 version: "1"
 
 services:
+  # db:
+  #   image: postgres:16
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: SoRa4762
+  #     POSTGRES_DB: projectc
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - app-network
+
   frontend:
     build: ./react
     ports:
@@ -12,6 +23,10 @@ services:
     build: ./node
     ports:
       - "5000:5000"
+    # environment:
+    #   DATABASE_URL: "postgres://postgres:SoRa4762@db:5432/projectc" # use `db` instead of localhost because it is running with in docker container
+    # depends_on:
+    #   - db
     networks:
       - app-network
 
