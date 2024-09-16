@@ -1,35 +1,65 @@
-version: "1"
+version: "1.7"
 
 services:
-  # db:
-  #   image: postgres:16
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: SoRa4762
-  #     POSTGRES_DB: projectc
-  #   ports:
-  #     - "5432:5432"
-  #   networks:
-  #     - app-network
+  db:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: SoRa4762
+      POSTGRES_DB: projectc
+    restart: always
+    volumes:
+      - project_c_db_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -t 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
 
   frontend:
     build: ./react
     ports:
       - "5173:5173"
     networks:
-      - app-network
+      - app_network
 
   backend:
     build: ./node
     ports:
       - "5000:5000"
-    # environment:
-    #   DATABASE_URL: "postgres://postgres:SoRa4762@db:5432/projectc" # use `db` instead of localhost because it is running with in docker container
-    # depends_on:
-    #   - db
+    environment:
+      - DATABASE_URL=postgres://postgres:SoRa4762@db:5432/projectc
+    depends_on:
+      db:
+        condition: service_healthy
+    # Establish a link with the db service for legacy compatibility (optional)
+    links:
+      - db
     networks:
-      - app-network
+      - app_network
 
+  migration:
+    build: ./node
+    command: yarn prisma migrate dev --name deploy
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app_network
+    environment:
+      DATABASE_URL: postgres://postgres:SoRa4762@db:5432/projectc
+
+# user defined networks
 networks:
-  app-network:
+  app_network:
     driver: bridge
+
+# user defined volumes
+volumes:
+  project_c_db_data:
