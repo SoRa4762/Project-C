@@ -19,7 +19,7 @@ COPY . .
 
 # prisma generate
 RUN yarn prisma generate
-RUN yarn prisma migrate dev --name deploy
+# RUN yarn prisma migrate dev --name deploy
 
 # your local port
 EXPOSE 5000
